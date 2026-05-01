@@ -1,0 +1,28 @@
+Test Case: test12_rst_idempotent (Repeated Reset)
+
+OBJECTIVE:
+----------
+To verify that the system is stable under multiple consecutive resets.
+
+SCENARIO:
+---------
+1. Reset.
+2. Reset.
+3. Store P(x) = 10x at Address 0.
+4. Evaluate x=5. Result: 50.
+
+INPUT FILES:
+------------
+1. control_in.txt:
+   - '4'       -> RST.
+   - '4'       -> RST.
+   - '1', '8'  -> STP Deg 1 Addr 0.
+   - '2', '0'  -> EVP Addr 0.
+
+2. data_in.txt:
+   - 0, 10     (Coeffs)
+   - 5         (x)
+
+EXPECTED OUTPUT:
+50
+0

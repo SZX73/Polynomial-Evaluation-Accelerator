@@ -1,0 +1,25 @@
+Test Case: test05_evp_error (Constant Poly & Repeated Access)
+
+Verify calculation integrity with Degree 0 (Constant) polynomials and repeated access to the same memory location.
+
+Scenario
+1. Store: P(x) = 42 (Degree 0) at Address 3.
+2. Evaluate: x = 5. Result: 42.
+3. Evaluate: x = 123. Result: 42.
+
+Input Files:
+1. control_in.txt:
+   - '1', '3'  -> STP Deg 0 Addr 3. Calc: (0<<3)|3 = 3.
+   - '2', '3'  -> EVP Addr 3.
+   - '2', '3'  -> EVP Addr 3.
+
+2. data_in.txt:
+   - 42        (Coeff c0)
+   - 5         (x1)
+   - 123       (x2)
+
+Expected Output:
+42
+0
+42
+0

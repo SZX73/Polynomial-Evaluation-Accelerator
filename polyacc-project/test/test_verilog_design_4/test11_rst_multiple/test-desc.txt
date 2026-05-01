@@ -1,0 +1,34 @@
+Test Case: test11_rst_multiple (Reset Clears All)
+
+OBJECTIVE:
+----------
+To verify that Reset clears the entire memory bank (all addresses), not just the most recently used one.
+
+SCENARIO:
+---------
+1. Store P_A at Addr 0.
+2. Store P_B at Addr 7.
+3. Reset.
+4. Evaluate Addr 0 (Fail).
+5. Evaluate Addr 7 (Fail).
+
+INPUT FILES:
+------------
+1. control_in.txt:
+   - '1', '8'  -> STP Deg 1 Addr 0.
+   - '1', '15' -> STP Deg 1 Addr 7.
+   - '4'       -> RST.
+   - '2', '0'  -> EVP Addr 0.
+   - '2', '7'  -> EVP Addr 7.
+
+2. data_in.txt:
+   - 1, 1      (P_A)
+   - 2, 2      (P_B)
+   - 5         (x)
+   - 5         (x)
+
+EXPECTED OUTPUT:
+0
+224
+0
+224

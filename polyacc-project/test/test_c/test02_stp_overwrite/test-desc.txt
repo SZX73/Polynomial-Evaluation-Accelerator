@@ -1,0 +1,5 @@
+Tests STP's overwrite functionality
+1. Stores P1(x) = 5x + 5 at address A = 0
+2. Stores P2(x) = 3x^2 + 2x + 1 at the same address
+3. Evaluates the polynomial at A = 0 with x = 4
+4. Checks that the results (57) corresponds to P2, proving the overwrite

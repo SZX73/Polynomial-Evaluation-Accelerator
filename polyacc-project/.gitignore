@@ -1,0 +1,25 @@
+# Ignore the CMake build directory
+build/
+
+# Ignore compiled C/C++ objects and executables
+*.o
+*.a
+*.exe
+
+# Ignore DICE/LIDE-V generated files
+bin/
+*.sdb
+*.rlx
+*.log
+*.pb
+*.jou
+*.wdb
+xsim.dir/
+
+# Ignore test output files
+autotest-output/
+output.txt
+error_output.txt
+diagnostics.txt
+transcript.txt
+

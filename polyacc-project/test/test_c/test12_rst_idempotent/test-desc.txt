@@ -1,0 +1,6 @@
+Tests that RST (Reset) is idempotent (safe to run multiple times) and works on an already-empty cache.
+1. RST: Issues a reset command (on an empty cache).
+2. RST: Issues a second reset command.
+3. STP: Stores a polynomial at A=0.
+4. EVP: Evaluates the polynomial at x=5.
+Checks that the final evaluation (Result: 50, Status: 0) succeeds.

@@ -1,0 +1,3 @@
+RST executed successfully
+Mode after reset: 0
+Poly[0] degree after reset: -1

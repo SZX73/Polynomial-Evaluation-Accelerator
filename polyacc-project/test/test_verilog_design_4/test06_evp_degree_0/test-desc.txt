@@ -1,0 +1,21 @@
+Test Case: test06_evp_degree_0 (Uninitialized Access Error)
+
+To verify that the accelerator detects and reports errors when attempting to evaluate a polynomial at an uninitialized memory address.
+
+Scenario:
+1. Store: P(x) at Address 0 (Valid).
+2. Evaluate: Address 1 (Invalid/Empty).
+
+Input files:
+1. control_in.txt:
+   - '1', '16' -> STP Deg 2 Addr 0.
+   - '2', '1'  -> EVP Addr 1.
+
+2. data_in.txt:
+   - 1, 2, 3   (Coeffs for Addr 0)
+   - 5         (x for Addr 1 - should be consumed but not used)
+
+Expected Output:
+0
+
+

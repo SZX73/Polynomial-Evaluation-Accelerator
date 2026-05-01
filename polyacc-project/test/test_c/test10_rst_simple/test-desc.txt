@@ -1,0 +1,6 @@
+Tests RST (Reset) functionality.
+1. STP: Stores a polynomial at A=0.
+2. EVP: Evaluates the polynomial to confirm it's stored (Result: 57).
+3. RST: Issues a reset command.
+4. EVP: Tries to evaluate the *same* polynomial at A=0 again.
+Checks that the second evaluation fails with (Result: 0, Status: 224).

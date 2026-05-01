@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+dlvincludepath=./
+dlvverbose=""
+dlvext=.v
+dlvbindir=../../../../bin/verilog/pea_v_lib_design_2
+

@@ -1,0 +1,11 @@
+Tests started on:
+Sun 07 Dec 2025 05:35:53 PM EST
+-----------------------------------------------------
+Test result for:
+/homes/j/p/jpearce2/home/team4/polyacc-project/test/test_verilog/test01_stp_evp
+Files ../correct-output.txt and output.txt differ
+-----------------------------------------------------
+Error comparison result for: 
+/homes/j/p/jpearce2/home/team4/polyacc-project/test/test_verilog/test01_stp_evp
+Tests completed on:
+Sun 07 Dec 2025 05:36:07 PM EST

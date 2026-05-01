@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+DRIVER=../../../bin/c/driver.exe
+
+# $DRIVER <control_in> <data_in> <result_out> <status_out>
+$DRIVER control_in.txt data_in.txt result_out.txt status_out.txt > diagnostics.txt
+
+# Check if the driver ran successfully.
+if [ $? -eq 0 ]; then
+    # Concatenate the two output files to standard output.
+    cat result_out.txt
+    cat status_out.txt
+fi

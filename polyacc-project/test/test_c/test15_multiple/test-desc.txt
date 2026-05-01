@@ -1,0 +1,7 @@
+Tests the full lifecycle of an actor: STP -> EVP (success) -> RST -> EVP (fail) -> STP (again) -> EVP (success).
+1. STP A=5: P(x) = 10x
+2. EVP A=5, x=5. (Result: 50, Status: 0)
+3. RST
+4. EVP A=5, x=5. (Result: 0, Status: 224 - POLY_INVALID)
+5. STP A=5: P(x) = x+1 (overwrite)
+6. EVP A=5, x=5. (Result: 6, Status: 0)

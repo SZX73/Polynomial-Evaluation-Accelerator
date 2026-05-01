@@ -1,0 +1,6 @@
+Tests EVP (Evaluate Polynomial) on a standard polynomial.
+
+1. STP: Stores P(x) = 3x^2 + 2x + 1 at address A=0.
+2. EVP: Evaluates P(x) at x=10.
+
+Checks for the correct result (321) and status (0).

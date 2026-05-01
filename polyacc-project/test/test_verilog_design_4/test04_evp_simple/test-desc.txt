@@ -1,0 +1,18 @@
+Test Case: test04_evp_simple (Standard Eval)
+
+1. Store: P(x) = 3x^2 + 2x + 1 (Degree 2) at Address 0.
+2. Evaluate: x = 10.
+   - Result: 3(100) + 2(10) + 1 = 321.
+
+Input Files:
+1. control_in.txt:
+   - '1', '16' -> STP Deg 2 Addr 0.
+   - '2', '0'  -> EVP Addr 0.
+
+2. data_in.txt:
+   - 1, 2, 3   (Coeffs)
+   - 10        (x)
+
+Expected Output:
+321
+0

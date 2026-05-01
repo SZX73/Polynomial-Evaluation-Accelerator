@@ -1,0 +1,29 @@
+Test Case: test08_evb_error (Block Eval on Invalid Address)
+
+OBJECTIVE:
+----------
+To verify that the Evaluate Block (EVB) instruction correctly reports an error if the target polynomial address is uninitialized.
+
+SCENARIO:
+---------
+1. Attempt EVB on Address 0 (which is empty) with Block Size 2.
+
+INPUT FILES:
+------------
+1. control_in.txt:
+   - '3'       -> EVB Opcode.
+   - '16'      -> Packed Arg (Size=2, Addr=0). Calc: (2<<3)|0 = 16.
+
+2. data_in.txt:
+   - (Empty)   -> Error should occur before reading data.
+
+EXPECTED OUTPUT:
+0
+224
+
+HARDWARE EXECUTION SUMMARY:
+---------------------------
+1. L2 FSM reads EVB opcode and args.
+2. L3 EVB FSM checks memory validity for Addr 0.
+3. Check fails. FSM skips data reading loop.
+4. FSM writes Error Status (224) and Result 0.

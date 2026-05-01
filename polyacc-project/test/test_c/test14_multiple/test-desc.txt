@@ -1,0 +1,4 @@
+Tests storing polynomials in all 8 cache slots (A=0...7) and then evaluating them all.
+1. STP (x8): Stores P(x) = x + A at each address A. (e.g., A=0 is x, A=1 is x+1, ...)
+2. EVP (x8): Evaluates each P(x) at x=10.
+Checks that all 8 polynomials are stored and evaluated correctly.

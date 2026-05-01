@@ -1,0 +1,5 @@
+Tests a mixed stream of EVP and EVB instructions on the same polynomial.
+1. STP: Stores P(x) = x^2 + 10 (N=2) at address A=0.
+2. EVP: Evaluates P(x) at x=3. (Result: 19)
+3. EVB: Evaluates P(x) for a block of b=2 with inputs x=4, x=5. (Results: 26, 35)
+Checks for sequential results and all OK statuses.

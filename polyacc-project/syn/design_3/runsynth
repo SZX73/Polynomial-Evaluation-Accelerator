@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+if [ "$1" == "clean" ]; then
+    echo "Cleaning synthesis files for Design 3..."
+    rm -rf .Xil usage_statistics_webtalk.xml vivado* *.log *.jou *.str *.pb *.dcp *.rpt
+    exit 0
+fi
+
+echo "Running Synthesis for Design 3 (Pipelined)..."
+vivado -mode batch -source pea_syn.tcl
+
+if [ -f "utilization.rpt" ]; then
+    echo "----------------------------------------------------------------"
+    echo "DESIGN 3 SYNTHESIS COMPLETE"
+    echo "----------------------------------------------------------------"
+    echo "Resource Usage:"
+    grep -A 20 "Slice Logic" utilization.rpt | grep -E "Slice LUTs|Slice Registers|DSPs"
+    echo ""
+    echo "Timing Summary:"
+    grep -A 5 "Design Timing Summary" timing.rpt | tail -n 1
+else
+    echo "ERROR: Synthesis failed. Check vivado.log"
+fi
+
+

@@ -1,0 +1,7 @@
+Tests that RST (Reset) clears *all* polynomial addresses.
+1. STP: Stores a polynomial at A=0.
+2. STP: Stores a different polynomial at A=7.
+3. RST: Issues a reset command.
+4. EVP: Tries to evaluate A=0.
+5. EVP: Tries to evaluate A=7.
+Checks that both evaluations fail with (Result: 0, Status: 224).

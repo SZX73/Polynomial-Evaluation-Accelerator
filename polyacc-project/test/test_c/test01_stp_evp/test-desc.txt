@@ -1,0 +1,4 @@
+A basic "Hello World" test for the PEA LIDE-C actor.
+1. STP: Stores P(x) = 3x^2 + 2x + 1 (N=2) at address A = 0.
+2. EVP: Evaluates the polynomial at A = 0 with the input x = 4.
+Checks for a final result of 57 and a status of 0 (STATUS_OK).

@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+UXLIB="../../../bin/verilog/pea_v_lib_design_2"
+
+rm -rf xsim.dir .Xil
+mkdir -p xsim.dir/work
+if [ -d "$UXLIB" ] && [ "$(ls -A $UXLIB)" ]; then
+    cp $UXLIB/* ./xsim.dir/work/
+else
+    # Error handling
+    echo "CRITICAL ERROR: Library $UXLIB is missing or empty." >&2
+    echo "You MUST run ./makeme in src/verilog/designs/design_1 first." >&2
+    exit 1
+fi
+
+# Compile Testbench 
+xvlog pea_v_tb.v > transcript.txt 2>&1
+
+# Elaborate
+xelab -debug typical -L work -s top_sim pea_v_tb >> transcript.txt 2>&1
+
+# Check for Build Failure
+if [ ! -f xsim.dir/top_sim/xsimk ]; then
+    echo "BUILD FAILED. Check transcript.txt" >&2
+    exit 1
+fi
+
+# Run Simulation
+xsim top_sim -t run.tcl >> transcript.txt 2>&1
+
+# Output Results
+if [ -f "out.txt" ]; then
+    # Filters out 'x' noise so dxtest sees only clean numbers
+    cat out.txt | grep -v "x"
+else
+    echo "CRITICAL ERROR: out.txt was not created." >&2
+    tail -n 20 transcript.txt >&2
+    exit 1
+fi

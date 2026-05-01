@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# Check if we want to clean
+if [ "$1" == "clean" ]; then
+    echo "Cleaning synthesis files for Design 4..."
+    rm -rf .Xil usage_statistics_webtalk.xml vivado* *.log *.jou *.str *.pb *.dcp *.rpt
+    exit 0
+fi
+
+# Run Synthesis
+echo "Running Synthesis for Design 4 (Shift-Add Low Area)..."
+vivado -mode batch -source pea_syn.tcl
+
+# Check outputs
+if [ -f "utilization.rpt" ]; then
+    echo "----------------------------------------------------------------"
+    echo "DESIGN 4 SYNTHESIS COMPLETE"
+    echo "----------------------------------------------------------------"
+    echo "Resource Usage (Expect LOW LUTs, NO DSPs):"
+    grep -A 20 "Slice Logic" utilization.rpt | grep -E "Slice LUTs|Slice Registers|DSPs"
+    echo ""
+    echo "Timing Summary (Expect High F_max, but Low Throughput):"
+    grep -A 5 "Design Timing Summary" timing.rpt | tail -n 1
+else
+    echo "ERROR: Synthesis failed. Check vivado.log"
+fi
+

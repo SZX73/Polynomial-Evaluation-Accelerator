@@ -1,0 +1,8 @@
+Tests a complex interleaved stream of STP, EVB, EVP, and an STP overwrite.
+1. STP A=0: P(x) = x+100
+2. STP A=1: P(x) = 2x
+3. EVB A=0, b=2. Data: 1, 2. (Results: 101, 102)
+4. EVP A=1, x=10. (Result: 20)
+5. STP A=0: P(x) = 5 (Overwrite A=0)
+6. EVP A=0, x=99. (Result: 5)
+7. EVP A=1, x=11. (Result: 22)

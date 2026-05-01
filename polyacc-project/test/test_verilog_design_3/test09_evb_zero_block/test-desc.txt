@@ -1,0 +1,28 @@
+Test Case: test09_evb_zero_block (Zero Size Block)
+
+OBJECTIVE:
+----------
+To verify that a block evaluation with size 0 results in a No-Operation (NOP) without error or output.
+
+SCENARIO:
+---------
+1. Store: P(x) = 10x at Address 0.
+2. Evaluate Block: Address 0, Size 0.
+
+INPUT FILES:
+------------
+1. control_in.txt:
+   - '1', '8'  -> STP Deg 1 Addr 0.
+   - '3', '0'  -> EVB Size 0 Addr 0. Calc: (0<<3)|0 = 0.
+
+2. data_in.txt:
+   - 0, 10     (Coeffs)
+
+EXPECTED OUTPUT:
+(Empty File)
+
+HARDWARE EXECUTION SUMMARY:
+---------------------------
+1. Store completes.
+2. EVB FSM starts. Loop counter (0) >= Block Size (0).
+3. FSM exits immediately without reading x or producing output.

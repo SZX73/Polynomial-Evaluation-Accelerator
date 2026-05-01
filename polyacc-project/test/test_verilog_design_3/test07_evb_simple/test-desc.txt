@@ -1,0 +1,49 @@
+Test Case: test07_evb_simple (Block Evaluation)
+
+
+1. Store (STP): Load the polynomial P(x) = 1x^2 + 1x + 2 (Degree N=2) into Memory Address 0.
+   - Coefficients: c0 = 2, c1 = 1, c2 = 1.
+2. Evaluate Block (EVB): Perform a block evaluation of P(x) for a batch of 3 input arguments: x = 1, x = 2, and x = 3.
+
+Input Files (Calculations):
+1. control_in.txt (Instruction Stream):
+   - Line 1: '1'  -> Opcode for STP (Store Polynomial).
+   - Line 2: '16' -> Packed Argument for STP.
+             Formula: (Degree << 3) | Address
+             Calculation: (2 << 3) | 0  =  16
+   - Line 3: '3'  -> Opcode for EVB (Evaluate Block).
+   - Line 4: '24' -> Packed Argument for EVB.
+             Formula: (Block_Size << 3) | Address
+             Calculation: (3 << 3) | 0  =  24 (Binary: 011 000)
+
+2. data_in.txt (Data Stream):
+   - Line 1: '2'  -> Coefficient c0 (Constant).
+   - Line 2: '1'  -> Coefficient c1 (Linear).
+   - Line 3: '1'  -> Coefficient c2 (Quadratic).
+   - Line 4: '1'  -> Input x1.
+   - Line 5: '2'  -> Input x2.
+   - Line 6: '3'  -> Input x3.
+
+Expected Output:
+4
+0
+8
+0
+14
+0
+
+Calculations:
+Polynomial: P(x) = x^2 + x + 2
+1. x = 1: (1)^2 + (1) + 2 = 1 + 1 + 2 = 4.   (Status: 0)
+2. x = 2: (2)^2 + (2) + 2 = 4 + 2 + 2 = 8.   (Status: 0)
+3. x = 3: (3)^2 + (3) + 2 = 9 + 3 + 2 = 14.  (Status: 0)
+
+Hardware Execution Summary:
+1. L2 FSM reads STP opcode and stores coeffs (2, 1, 1) to Memory Address 0.
+2. L2 FSM reads EVB opcode (3) and Packed Args (Size=3, Addr=0).
+3. L2 FSM triggers the L3 EVB Loop FSM.
+4. L3 EVB FSM enters a loop that runs 3 times:
+   - Loop 0: Reads x=1, triggers EVP FSM, writes Result 4, Status 0.
+   - Loop 1: Reads x=2, triggers EVP FSM, writes Result 8, Status 0.
+   - Loop 2: Reads x=3, triggers EVP FSM, writes Result 14, Status 0.
+5. L3 EVB FSM finishes and returns control to L2 FSM.

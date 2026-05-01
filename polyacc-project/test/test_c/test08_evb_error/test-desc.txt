@@ -1,0 +1,5 @@
+This tests the basic EVB functionality.
+1) STP: Stores P(x) = x^2 + x + 2 (N=2) at address A=0
+2) EVB: Evaluates P(x) at A=0 for a block of b=3 inputs
+3) Data: Provides x=1, x=2, and x=3
+Then it checks for three sequential results (4, 8, 14) and three OK statuses (0, 0, 0)

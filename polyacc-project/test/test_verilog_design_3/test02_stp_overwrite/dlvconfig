@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+dlvincludepath="./"
+dlvverbose=""
+dlvext=".v"
+# TEST folder needs 3 levels up to reach project root
+dlvbindir=../../../bin/verilog/pea_v_lib_design_3
+dlvtestbench="pea_v_tb"

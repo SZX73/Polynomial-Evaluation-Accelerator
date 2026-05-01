@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# 1. Clean previous results if "clean" argument is passed
+if [ "$1" == "clean" ]; then
+    echo "Cleaning synthesis files for Design 1..."
+    rm -rf .Xil usage_statistics_webtalk.xml vivado* *.log *.jou *.str *.pb *.dcp *.rpt
+    exit 0
+fi
+
+# 2. Run Synthesis
+echo "Running Synthesis for Design 1 (Iterative)..."
+vivado -mode batch -source pea_syn.tcl
+
+# 3. Check and Print Results
+if [ -f "utilization.rpt" ]; then
+    echo "----------------------------------------------------------------"
+    echo "DESIGN 1 SYNTHESIS COMPLETE"
+    echo "----------------------------------------------------------------"
+    echo "Resource Usage:"
+    # This grep pulls the relevant LUT/Register lines
+    grep -A 20 "Slice Logic" utilization.rpt | grep -E "Slice LUTs|Slice Registers|DSPs"
+    echo ""
+    echo "Timing Summary (Look for positive Slack):"
+    grep -A 5 "Design Timing Summary" timing.rpt | tail -n 1
+else
+    echo "ERROR: Synthesis failed. Check vivado.log"
+fi
+

@@ -1,0 +1,31 @@
+Test Case: test10_rst_simple (Basic Reset)
+
+OBJECTIVE:
+----------
+To verify that the Reset (RST) instruction correctly invalidates stored polynomials.
+
+SCENARIO:
+---------
+1. Store: Poly at Addr 0.
+2. Evaluate: Addr 0 (Success).
+3. Reset (RST).
+4. Evaluate: Addr 0 (Fail).
+
+INPUT FILES:
+------------
+1. control_in.txt:
+   - '1', '16' -> STP.
+   - '2', '0'  -> EVP.
+   - '4'       -> RST Opcode.
+   - '2', '0'  -> EVP.
+
+2. data_in.txt:
+   - 1, 2, 3   (Coeffs)
+   - 4         (x for first eval)
+   - 4         (x for second eval)
+
+EXPECTED OUTPUT:
+57
+0
+0
+224

@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Check if we want to clean
+if [ "$1" == "clean" ]; then
+    echo "Cleaning synthesis files for Design 2..."
+    rm -rf .Xil usage_statistics_webtalk.xml vivado* *.log *.jou *.str *.pb *.dcp *.rpt
+    exit 0
+fi
+
+# Run Synthesis
+echo "Running Synthesis for Design 2 (Dual Compute)..."
+vivado -mode batch -source pea_syn.tcl
+
+# Check if reports were generated
+if [ -f "utilization.rpt" ]; then
+    echo "----------------------------------------------------------------"
+    echo "DESIGN 2 SYNTHESIS COMPLETE"
+    echo "----------------------------------------------------------------"
+    echo "Resource Usage (Look for Slice LUTs and DSP Blocks):"
+    grep -A 10 "Slice Logic Distribution" utilization.rpt | head -n 20
+    echo ""
+    echo "Check utilization.rpt and timing.rpt for full details."
+else
+    echo "ERROR: Synthesis failed. Check vivado.log"
+fi

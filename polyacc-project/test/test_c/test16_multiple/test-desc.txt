@@ -1,0 +1,8 @@
+Tests a stream of mixed valid and invalid instructions to ensure the actor recovers from errors and continues.
+1. EVP A=0 (x=5). (Fail: R=0, S=224)
+2. STP A=0: P(x) = 5x
+3. EVP A=0 (x=5). (Success: R=25, S=0)
+4. EVP A=1 (x=5). (Fail: R=0, S=224)
+5. STP A=1: P(x) = 2x
+6. EVP A=0 (x=6). (Success: R=30, S=0)
+7. EVP A=1 (x=7). (Success: R=14, S=0)

@@ -1,0 +1,8 @@
+Tests EVP (Evaluate Polynomial) with a Degree 0 (constant) polynomial.
+
+1. STP: Stores P(x) = 42 (N=0) at address A=3.
+2. EVP: Evaluates P(x) at x=5.
+3. EVP: Evaluates P(x) at x=123.
+
+Checks that both results are 42, proving the x-value is
+correctly multiplied 0 times (per Horner's method).

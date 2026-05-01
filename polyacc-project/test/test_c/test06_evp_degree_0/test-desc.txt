@@ -1,0 +1,6 @@
+Tests EVP (Evaluate Polynomial) error handling.
+
+1. STP: Stores a polynomial at address A=0.
+2. EVP: Attempts to evaluate an uninitialized polynomial at address A=1.
+
+Checks that the result is 0 and the status is 224 (STATUS_ERROR_POLY_INVALID).
